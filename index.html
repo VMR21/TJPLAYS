@@ -111,8 +111,7 @@
 </div>
 
 <script>
-    // Set target date and time (Modify this to your actual leaderboard start time)
-    const targetDate = new Date("2025-05-01T05:30:00Z"); // Adjust time as needed
+    const targetDate = new Date("2025-05-01T05:30:00Z"); // Adjust as needed
 
     function updateCountdown() {
         const now = new Date();
@@ -120,7 +119,6 @@
 
         if (diff <= 0) {
             document.getElementById("countdown").innerText = "Leaderboard Started!";
-            document.getElementById("lastUpdated").innerText = new Date().toISOString().replace("T", " ").split(".")[0] + " UTC";
             return;
         }
 
@@ -129,16 +127,20 @@
         const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-        // Update the countdown display
         document.getElementById("countdown").innerText = `${days} Days ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }
 
-        // Update last updated timestamp in UTC
+    function updateLastUpdated() {
         document.getElementById("lastUpdated").innerText = new Date().toISOString().replace("T", " ").split(".")[0] + " UTC";
     }
 
     updateCountdown(); // Initial call
-    setInterval(updateCountdown, 1000); // Update every second
+    updateLastUpdated(); // Initial timestamp update
+
+    setInterval(updateCountdown, 1000); // Update countdown every second
+    setInterval(updateLastUpdated, 24 * 60 * 60 * 1000); // Update "Last Updated" every 24 hours
 </script>
+
 
 <div data-v-1d580398="" class="row list row-cols-5">
                 </div>
