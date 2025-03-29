@@ -102,11 +102,12 @@
                 </div>
                 <div class="countdown">
     <div>
-        <span class="title">
-            <span style="color: #FFCE00">NEW</span> Leaderboard starts in 
-        </span>
-        <span class="subtitle" id="countdown">Calculating...</span>
-    </div>
+<div>
+    <span class="title">
+        <span style="color: #FFCE00">NEW</span> Leaderboard starts in 
+    </span>
+    <span class="subtitle" id="countdown">Calculating...</span>
+    <div class="last-updated">Last Updated: <span id="lastUpdated">-</span></div>
 </div>
 
 <script>
@@ -119,6 +120,7 @@
 
         if (diff <= 0) {
             document.getElementById("countdown").innerText = "Leaderboard Started!";
+            document.getElementById("lastUpdated").innerText = new Date().toLocaleString();
             return;
         }
 
@@ -129,6 +131,9 @@
 
         // Update the countdown display
         document.getElementById("countdown").innerText = `${days} Days ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+        // Update last updated timestamp
+        document.getElementById("lastUpdated").innerText = new Date().toLocaleString();
     }
 
     updateCountdown(); // Initial call
