@@ -107,12 +107,12 @@
         <span style="color: #FFCE00">NEW</span> Leaderboard starts in 
     </span>
     <span class="subtitle" id="countdown">Calculating...</span>
-    <div class="last-updated">Last Updated: <span id="lastUpdated">-</span></div>
+    <div class="last-updated">Last Updated: <span id="lastUpdated">-</span> (UTC)</div>
 </div>
 
 <script>
     // Set target date and time (Modify this to your actual leaderboard start time)
-    const targetDate = new Date("2025-05-01T05:30:00"); // Adjust time as needed
+    const targetDate = new Date("2025-05-01T05:30:00Z"); // Adjust time as needed
 
     function updateCountdown() {
         const now = new Date();
@@ -120,7 +120,7 @@
 
         if (diff <= 0) {
             document.getElementById("countdown").innerText = "Leaderboard Started!";
-            document.getElementById("lastUpdated").innerText = new Date().toLocaleString();
+            document.getElementById("lastUpdated").innerText = new Date().toISOString().replace("T", " ").split(".")[0] + " UTC";
             return;
         }
 
@@ -132,14 +132,15 @@
         // Update the countdown display
         document.getElementById("countdown").innerText = `${days} Days ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 
-        // Update last updated timestamp
-        document.getElementById("lastUpdated").innerText = new Date().toLocaleString();
+        // Update last updated timestamp in UTC
+        document.getElementById("lastUpdated").innerText = new Date().toISOString().replace("T", " ").split(".")[0] + " UTC";
     }
 
     updateCountdown(); // Initial call
     setInterval(updateCountdown, 1000); // Update every second
 </script>
 
+<div data-v-1d580398="" class="row list row-cols-5">
                 </div>
                 <div data-v-1d580398="" class="row list details">
                 <div data-v-1d580398="" class="hide-mobile col-2"> Place </div>
